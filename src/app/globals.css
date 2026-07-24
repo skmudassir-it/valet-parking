@@ -1,0 +1,132 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 1.0);
+  --radius-lg: calc(var(--radius) * 1.4);
+  --radius-xl: calc(var(--radius) * 2.0);
+}
+
+:root {
+  --primary: oklch(0.28 0.10 260);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.78 0.16 85);
+  --secondary-foreground: oklch(0.25 0.02 260);
+  --background: oklch(0.99 0 0);
+  --foreground: oklch(0.23 0.03 260);
+  --card: oklch(0.99 0 0);
+  --card-foreground: oklch(0.23 0.03 260);
+  --muted: oklch(0.96 0.01 260);
+  --muted-foreground: oklch(0.55 0.03 260);
+  --accent: oklch(0.62 0.04 250);
+  --accent-foreground: oklch(0.99 0 0);
+  --destructive: oklch(0.55 0.22 25);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(0.88 0.02 260);
+  --input: oklch(0.88 0.02 260);
+  --ring: oklch(0.28 0.10 260);
+  --popover: oklch(0.99 0 0);
+  --popover-foreground: oklch(0.23 0.03 260);
+  --radius: 0.75rem;
+}
+
+/* Glassmorphism Utilities */
+
+@utility glass {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 8px 32px rgba(15, 30, 70, 0.07);
+}
+
+@utility glass-card {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 24px rgba(15, 30, 70, 0.06);
+  border-radius: var(--radius-xl);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+@layer base {
+  .glass-card:hover {
+    box-shadow: 0 8px 32px rgba(15, 30, 70, 0.12);
+    transform: translateY(-2px);
+  }
+}
+
+@utility glass-nav {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 1px 12px rgba(15, 30, 70, 0.04);
+}
+
+@utility gradient-divider {
+  background: linear-gradient(90deg, var(--primary), var(--secondary), oklch(0.62 0.04 250));
+  height: 3px;
+  border-radius: 9999px;
+}
+
+/* Gold gradient button */
+@utility btn-gold {
+  background: linear-gradient(135deg, oklch(0.78 0.16 85), oklch(0.68 0.18 80));
+  color: oklch(0.25 0.02 260);
+  font-weight: 600;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+@layer base {
+  .btn-gold:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
+  }
+}
+
+/* Notification bar animations */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+@utility animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+@keyframes flash {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+}
+@utility animate-flash {
+  animation: flash 2s ease-in-out infinite;
+}
+
+/* Base */
+body {
+  background-color: oklch(0.97 0.01 260);
+  background-image:
+    radial-gradient(ellipse at 10% 20%, oklch(0.92 0.03 260 / 0.4) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 80%, oklch(0.82 0.10 85 / 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, oklch(0.96 0.01 260 / 0.5) 0%, transparent 70%);
+  min-height: 100vh;
+}
